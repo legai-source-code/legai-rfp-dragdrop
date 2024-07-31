@@ -32,10 +32,10 @@ export default function DragAndDrop() {
                     </section>
                 )}
             </Dropzone>
+            <h3 className="files-list-heading">Uploaded RFP files</h3>
             {/*  Display files that were dropped */}
             {uploadedFiles.length > 0 && (
-                <div>
-                    <p>Uploaded RFP files</p>
+                <div className="files-list-container">
                     <ul>
                         {uploadedFiles.map((file, index) => (
                             <li key={index}>{file.name}</li>
