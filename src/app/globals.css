@@ -13,8 +13,14 @@
   margin-top: 25px;
   border: 2px dashed lightslategray;
   padding: 2em;
-  width: 800px;
+  width: 100%;
+  max-width: 800px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: border-color 0.2s ease-in-out;
 }
 
 .files-list-heading {
