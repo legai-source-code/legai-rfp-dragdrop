@@ -8,6 +8,17 @@
   padding: 12px;
 }
 
+.rfp-form {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title-input {
+  margin-bottom: 12px;
+}
+
+
 .dropZone {
   border-radius: 15px;
   margin-top: 25px;

@@ -1,30 +1,27 @@
-'use client'
-import { MouseEvent, useState } from "react"
-import Dropzone from "react-dropzone"
-import axios from "axios";
+'use client';
+import { useState } from 'react';
+import Dropzone from 'react-dropzone';
+import axios from 'axios';
 
 export default function DragAndDrop() {
     const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
 
-
-    const handleDrop = (acceptedFiles: any[]) => {
+    const handleDrop = (acceptedFiles: File[]) => {
         if (acceptedFiles.length === 0) {
-            console.log("No RFP files selected");
-            return
+            console.log('No RFP files selected');
+            return;
         }
 
         // Process the selected PDF files
-        console.log("Selected RFP example files", acceptedFiles);
+        console.log('Selected RFP example files', acceptedFiles);
 
         // Set the uploaded files
         setUploadedFiles(acceptedFiles);
-    }
+    };
 
-    const handleSubmit = async (e: MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        e.preventDefault();
-
+    const handleSubmit = async () => {
         if (uploadedFiles.length === 0) {
             alert('Please upload at least one RFP file.');
             return;
@@ -33,10 +30,6 @@ export default function DragAndDrop() {
         const formData = new FormData();
         formData.append('title', title);
         formData.append('description', description);
-
-        console.log('title', title);
-        console.log('description', description);
-
         uploadedFiles.forEach((file) => formData.append('file', file));
 
         try {
@@ -56,7 +49,7 @@ export default function DragAndDrop() {
             console.error('Error uploading RFP:', error);
             alert('Failed to submit RFP');
         }
-    }
+    };
 
     return (
         <>
@@ -66,7 +59,6 @@ export default function DragAndDrop() {
                     placeholder="RFP Title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    className="title-input"
                     required
                 />
                 <textarea
@@ -87,7 +79,7 @@ export default function DragAndDrop() {
                 )}
             </Dropzone>
             <h3 className="files-list-heading">Uploaded RFP files</h3>
-            {/*  Display files that were dropped */}
+            {/* Display files that were dropped */}
             {uploadedFiles.length > 0 && (
                 <div className="files-list-container">
                     <ul>
@@ -97,9 +89,9 @@ export default function DragAndDrop() {
                     </ul>
                 </div>
             )}
-            <button type="button" onClick={(e) => handleSubmit(e)}>
+            <button type="button" onClick={handleSubmit}>
                 Submit RFP
             </button>
         </>
-    )
+    );
 }

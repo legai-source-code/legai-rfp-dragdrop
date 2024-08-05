@@ -17,12 +17,16 @@ const RfpSchema = new Schema({
     createdBy: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        required: [true, 'User is required']
+        // TODO: Update this to be required once authentication is implemented
+        required: false
     },
-    documentUrl: {
-        type: String,
-        required: [true, 'Document URL is required']
-    },
+    files: [
+        {
+            originalName: { type: String, required: false },
+            documentUrl: { type: String, required: true },
+            uploadDate: { type: Date, default: Date.now }
+        }
+    ],
     submissionDate: {
         type: Date
     },
